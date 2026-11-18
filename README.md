@@ -24,6 +24,15 @@ Vercel serves the static `out/` folder. Any static host works the same way. The 
 domain is picked up automatically for canonical and Open Graph URLs; set
 `NEXT_PUBLIC_SITE_URL` if you host it elsewhere.
 
+## Install as an app
+
+The site is a PWA. On Chrome, Edge and Android, use the **Install the app** button when it
+appears (or the install icon in the address bar). It opens in its own window and works
+offline. On iPhone and iPad, use Share → **Add to Home Screen**.
+
+`npm run build` writes a service worker that precaches the exported shell, icons, fonts and
+the pdf.js worker, so converting a memo needs no network after the first visit.
+
 ## CLI
 
 ```bash

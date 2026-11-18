@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "next build --webpack",
+    "build": "next build --webpack && node scripts/build-sw.mjs",
     "start": "next start",
     "build:cli": "tsc -p tsconfig.cli.json",
     "cli": "npm run build:cli && node dist/cli.js",
