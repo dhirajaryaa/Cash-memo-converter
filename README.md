@@ -15,7 +15,9 @@ npm run build    # static site in out/
 ```
 
 Deploy on Vercel: import the repo, keep the Next.js preset, build with `npm run build`.
-Vercel serves the static `out/` folder. Any static host works the same way.
+Vercel serves the static `out/` folder. Any static host works the same way. The production
+domain is picked up automatically for canonical and Open Graph URLs; set
+`NEXT_PUBLIC_SITE_URL` if you host it elsewhere.
 
 ## CLI
 
@@ -39,8 +41,9 @@ npm test           # address rules, every sort/parts combo, exact rows and rende
 npm run samples    # writes PDFs to output/<memo>/ plus output/manifest.json
 ```
 
-The three memos in `test/` (32, 37 and 66 entries) are the fixtures. Their expected rows live
-in `test/expected/`.
+The three memos in `test/` (32, 37 and 66 entries) are the fixtures. They are real customer
+memos, so they and their snapshots stay out of git. See `test/README.md` to run the full
+suite locally.
 
 ## Layout
 
