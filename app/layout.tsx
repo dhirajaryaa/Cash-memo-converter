@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   description:
     "Turn an Indane Cash Memo Bulk PDF into a clean A4 delivery list. Runs entirely in your browser. No uploads, no AI, no account.",
   applicationName: "Delivery List",
+  authors: [{ name: "Dhiraj Arya", url: "https://github.com/dhirajaryaa" }],
+  creator: "Dhiraj Arya",
+  publisher: "Dhiraj Arya",
   manifest: "/manifest.webmanifest",
   icons: { icon: "/icon.svg" },
   openGraph: {

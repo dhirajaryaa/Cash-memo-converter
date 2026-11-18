@@ -732,7 +732,14 @@ export default function ConverterApp() {
             <LayersIcon size={16} /> Delivery List
           </span>
           <span>pdf.js + pdf-lib · offline by design</span>
-          <span>Built for the distributor&apos;s desk</span>
+          <a
+            className="footer-credit"
+            href="https://github.com/dhirajaryaa"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Made with <span className="footer-heart" aria-hidden="true">♥</span> by @dhirajaryaa
+          </a>
         </div>
       </footer>
     </div>

@@ -52,3 +52,7 @@ in `test/expected/`.
 
 Payment is `Online` when Net Payable is 0, otherwise `Cash`. Missing or cut-off fields are kept
 as they appear in the memo and reported as warnings.
+
+---
+
+Made with love by [@dhirajaryaa](https://github.com/dhirajaryaa).

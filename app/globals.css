@@ -1291,6 +1291,21 @@ svg {
   font-weight: 600;
 }
 
+.footer-credit {
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.footer-credit:hover {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-heart {
+  color: var(--red);
+}
+
 /* Entrance */
 @keyframes enter {
   from {
