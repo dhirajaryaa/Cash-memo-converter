@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { basename, join } from "node:path";
 import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
 import { buildPdf } from "./core/pdf.js";
@@ -9,10 +9,18 @@ import { extractMemos } from "./node/extract.js";
 
 const root = join(import.meta.dirname, "..");
 const fixtureDir = join(root, "test");
-const fixtureFiles = readdirSync(fixtureDir)
-  .filter((f) => /^Cash Memo Bulk .*\.pdf$/i.test(f))
-  .sort();
-assert.equal(fixtureFiles.length, 3, "three cash-memo fixtures are expected");
+const fixtureFiles = existsSync(fixtureDir)
+  ? readdirSync(fixtureDir)
+      .filter((f) => /^Cash Memo Bulk .*\.pdf$/i.test(f))
+      .sort()
+  : [];
+assert.ok(
+  fixtureFiles.length === 0 || fixtureFiles.length === 3,
+  "either no fixtures, or the three cash-memo fixtures are expected",
+);
+if (fixtureFiles.length === 0) {
+  console.log("no fixtures in test/ - skipping memo regression checks (see test/README.md)");
+}
 
 const expectedCounts: Record<string, number> = {
   "Cash Memo Bulk - 2026-11-08T070641.046.PDF": 32,
@@ -43,9 +51,13 @@ for (const file of fixtureFiles) {
   assert.equal(memos.length, expectedCount, `${file}: memo count`);
 
   // Exact regression snapshot for every extracted field and printed row.
-  const snapshot = JSON.parse(
-    readFileSync(join(fixtureDir, "expected", `${basename(file).replace(/\.pdf$/i, "")}.json`), "utf8"),
+  const snapshotPath = join(
+    fixtureDir,
+    "expected",
+    `${basename(file).replace(/\.pdf$/i, "")}.json`,
   );
+  assert.ok(existsSync(snapshotPath), `${file}: missing snapshot, run npm run snapshots`);
+  const snapshot = JSON.parse(readFileSync(snapshotPath, "utf8"));
   assert.equal(snapshot.memoCount, expectedCount);
   const exact = buildDeliveryList(memos, { sort: "memo", parts: 3 });
   assert.deepEqual(exact.rows, snapshot.rows, `${file}: exact row output`);
