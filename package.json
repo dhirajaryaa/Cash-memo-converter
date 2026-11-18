@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@fontsource-variable/inter-tight": "^5.2.8",
+    "@vercel/analytics": "^2.0.1",
     "next": "^16.4.6",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^6.2.108",

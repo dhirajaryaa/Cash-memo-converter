@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "@fontsource-variable/inter-tight";
 import "./globals.css";
 import ServiceWorker from "@/components/service-worker";
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" data-type="software" data-radius="soft">
       <body>
         {children}
+        <Analytics />
         <ServiceWorker />
       </body>
     </html>

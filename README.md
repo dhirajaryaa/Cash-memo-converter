@@ -1,12 +1,17 @@
 # delivery-list
 
 Indane "Cash Memo Bulk" PDF -> clean A4 delivery list PDF. Everything runs offline:
-`pdfjs-dist` reads the memo, `pdf-lib` writes the list. No AI, no uploads, no network calls.
+`pdfjs-dist` reads the memo, `pdf-lib` writes the list. No AI, no account, and the memo
+never leaves the browser.
+
+The deployed site uses Vercel Analytics for anonymous page counts. It never sees the memo,
+the extracted rows or a downloaded list.
 
 ## Web app
 
 Upload one or more memos, preview the rows, then download a PDF or CSV. Conversion happens
 in the browser, so the site is a static export and needs no server or edge function.
+Downloads are named `Delivery-List-YYYY-MM-DD.pdf` (or `.csv`).
 
 ```bash
 npm install
