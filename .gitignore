@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+dist/
+public/pdf.worker.min.mjs
+public/pdfjs/
+.taste-skill/
+.playwright-cli/
+*.tsbuildinfo
+.DS_Store
