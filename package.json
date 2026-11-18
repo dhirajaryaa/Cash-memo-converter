@@ -1,19 +1,32 @@
 {
-  "name": "delivery-list-offline",
-  "version": "1.0.0",
-  "description": "Indane cash-memo bulk PDF -> clean A4 delivery list PDF. Fully offline, no AI.",
+  "name": "delivery-list",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Indane cash-memo bulk PDF -> clean A4 delivery list PDF. Fully offline, no AI, plus a browser app.",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/index.js",
-    "test": "tsc && node dist/address.test.js"
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "build:cli": "tsc -p tsconfig.cli.json",
+    "cli": "npm run build:cli && node dist/cli.js",
+    "test": "npm run build:cli && node dist/address.test.js && node dist/convert.test.js",
+    "samples": "npm run build:cli && node dist/node/generate-samples.js",
+    "snapshots": "npm run build:cli && node dist/snapshots.js",
+    "postinstall": "node scripts/copy-pdfjs-assets.mjs"
   },
   "dependencies": {
+    "@fontsource-variable/inter-tight": "^5.2.8",
+    "next": "^16.4.6",
     "pdf-lib": "^1.17.1",
-    "pdfjs-dist": "^6.2.108"
+    "pdfjs-dist": "^6.2.108",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
     "typescript": "^5.6.0"
   }
 }
