@@ -40,6 +40,16 @@ const STAGES: { key: StageKey; label: string }[] = [
   { key: "done", label: "Delivery list ready" },
 ];
 
+function deliveryFileName(ext: "pdf" | "csv") {
+  const now = new Date();
+  const date = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0"),
+  ].join("-");
+  return `Delivery-List-${date}.${ext}`;
+}
+
 const SORTS: { value: SortMode; label: string; icon: typeof ListIcon }[] = [
   { value: "memo", label: "Memo order", icon: ListIcon },
   { value: "area", label: "By area", icon: RouteIcon },
@@ -217,15 +227,12 @@ export default function ConverterApp() {
     if (inputRef.current) inputRef.current.value = "";
   };
 
-  const slug = (file?.name ?? "Cash_Memo").replace(/\.pdf$/i, "").replace(/[^\w.-]+/g, "_");
-  const variant = sort === "area" ? "by-area" : sort === "name" ? "by-name" : "memo-order";
-
   const download = () => {
     if (!pdfBlob) return;
     const url = URL.createObjectURL(pdfBlob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${slug}_delivery-list_${variant}_${parts}p.pdf`;
+    a.download = deliveryFileName("pdf");
     document.body.appendChild(a);
     a.click();
     a.remove();
@@ -238,7 +245,7 @@ export default function ConverterApp() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${slug}_delivery-list_${variant}_${parts}p.csv`;
+    a.download = deliveryFileName("csv");
     document.body.appendChild(a);
     a.click();
     a.remove();

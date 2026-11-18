@@ -53,6 +53,12 @@ if (!Number.isInteger(parts) || parts < 1 || parts > 5) {
 const title = String(flags.title ?? "DIVYASHRI KD INDANE - Delivery List");
 const outArg = flags.out ? String(flags.out) : "output";
 const groupByArea = !flags["no-group"] && sort === "area";
+const today = new Date();
+const dateStamp = [
+  today.getFullYear(),
+  String(today.getMonth() + 1).padStart(2, "0"),
+  String(today.getDate()).padStart(2, "0"),
+].join("-");
 
 for (const file of files) {
   if (!existsSync(file)) {
@@ -62,7 +68,15 @@ for (const file of files) {
   }
   let out: string;
   if (files.length === 1 && extname(outArg).toLowerCase() === ".pdf") out = outArg;
-  else out = join(outArg, `Delivery_List_${basename(file).replace(/\.pdf$/i, "").replace(/[^\w.-]+/g, "_")}.pdf`);
+  else {
+    const stem = basename(file).replace(/\.pdf$/i, "").replace(/[^\w.-]+/g, "_");
+    out = join(
+      outArg,
+      files.length === 1
+        ? `Delivery-List-${dateStamp}.pdf`
+        : `Delivery-List-${dateStamp}-${stem}.pdf`,
+    );
+  }
 
   try {
     const memos = await extractMemos(file);
