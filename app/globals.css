@@ -698,7 +698,7 @@ svg {
 /* Options */
 .options {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 14px;
   margin-top: 16px;
   padding-top: 16px;
@@ -754,11 +754,11 @@ svg {
   align-items: center;
   justify-content: center;
   gap: 5px;
-  height: 31px;
-  padding: 0 5px;
+  height: 32px;
+  padding: 0 8px;
   border-radius: 6px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 550;
   white-space: nowrap;
   cursor: pointer;
