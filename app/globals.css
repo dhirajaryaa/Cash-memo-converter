@@ -1306,6 +1306,37 @@ svg {
   color: var(--red);
 }
 
+/* PWA install */
+.install-prompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 8px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+.install-prompt span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.install-prompt:hover {
+  border-color: var(--line-strong);
+  background: #fff;
+}
+
+.install-prompt:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
 /* Entrance */
 @keyframes enter {
   from {

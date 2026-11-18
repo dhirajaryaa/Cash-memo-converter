@@ -5,6 +5,7 @@ import { buildPdf } from "@/src/core/pdf";
 import { buildDeliveryList, csvFor, subtitleFor, UNASSIGNED_AREA } from "@/src/core/rows";
 import type { ConvertStats, DeliveryRow, RawMemo, SortMode } from "@/src/core/types";
 import { extractMemosFromPdf } from "@/lib/browser-extract";
+import InstallApp from "./install-app";
 import {
   AlertIcon,
   ArrowRightIcon,
@@ -326,6 +327,7 @@ export default function ConverterApp() {
               <LockIcon size={16} />
               pdf.js reads the memo. pdf-lib writes the list. Both run locally.
             </p>
+            <InstallApp />
           </div>
 
           <div className="converter-card" data-enter>
